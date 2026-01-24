@@ -1,350 +1,638 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Congbo Ma's Homepage</title>
-	
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Congbo Ma">
-    <meta name="keywords" content="Congbo Ma, Congbo Ma The University of Adelaide">
-    <meta name="robots" content="index,follow">
-    <meta name="description" content="Homepage of Congbo Ma">
-    <link href="./res/css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" media="screen,print" href="./res/style.css">
-	<link href="./res/bootstrap.min.css" rel="stylesheet" media="screen">
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Congbo Ma | Academic Homepage</title>
+<meta content="Academic homepage of Congbo Ma: research, publications, and professional activities." name="description"/>
+<meta content="Congbo Ma" name="author"/>
+<style>:root{
+  color-scheme: light;
+  --bg:#f8fbff;
+  --card:rgba(255,255,255,.92);
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.10);
+
+  --accent:#0ea5e9;
+  --accent-rgb:14,165,233;
+  --accent2:#22c55e;
+  --accent2-rgb:34,197,94;
+  --warm:#f59e0b;
+  --warm-rgb:245,158,11;
+
+  --radius:18px;
+  --shadow:0 12px 32px rgba(2,132,199,.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(var(--accent-rgb), .22), transparent 60%),
+    radial-gradient(900px 520px at 95% 0%, rgba(var(--warm-rgb), .18), transparent 55%),
+    radial-gradient(900px 520px at 95% 95%, rgba(var(--accent2-rgb), .14), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.65;
+}
+a{color:var(--accent); text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{width:min(980px, 92vw); margin:0 auto;}
+.skip-link{
+  position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  left:14px; top:14px; width:auto; height:auto; overflow:visible;
+  padding:10px 12px; background:var(--card); border:1px solid var(--border);
+  border-radius:12px; box-shadow:var(--shadow); z-index:999;
+}
+.site-header{
+  padding:30px 0 18px;
+}
+.profile{
+  display:flex;
+  gap:22px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.avatar img{
+  width:170px; height:170px;
+  object-fit:cover;
+  border-radius:18px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+h1{
+  font-size:clamp(1.9rem, 3vw, 2.5rem);
+  margin:0;
+  letter-spacing:-0.02em;
+}
+.subtitle{
+  margin:8px 0 12px;
+  color:var(--muted);
+}
+.link-row{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:8px;
+}
+.link-row a, .link-row span{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  font-size:.92rem;
+  color:var(--text);
+  text-decoration:none;
+}
+.link-row a:hover{border-color:rgba(var(--accent-rgb), .45); text-decoration:none;}
+.link-row img{width:18px; height:18px;}
+.tag-row{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:10px;
+}
+.tag{
+  display:inline-flex;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:transparent;
+  font-size:.86rem;
+  color:var(--muted);
+}
+.topnav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.topnav a{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:.95rem;
+}
+.topnav a:hover{
+  border-color:rgba(var(--accent-rgb), .45);
+  text-decoration:none;
+}
+main{padding-bottom:10px;}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px 22px;
+  box-shadow:var(--shadow);
+  margin:16px 0;
+}
+.card h2{
+  margin:0 0 12px;
+  font-size:1.25rem;
+  letter-spacing:.2px;
+}
+.card p{margin:0 0 10px;}
+.card p:last-child{margin-bottom:0;}
+.list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.timeline-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.date-badge{
+  flex:0 0 auto;
+  font-size:.82rem;
+  color:var(--muted);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:2px 10px;
+  margin-top:2px;
+  white-space:nowrap;
+}
+.timeline-text{flex:1 1 auto;}
+.bullets{
+  margin:0;
+  padding-left:1.1rem;
+}
+.bullets li{margin:8px 0;}
+.year-block{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:10px 12px;
+  background:transparent;
+}
+.year-block + .year-block{margin-top:12px;}
+.year-block summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:6px 6px;
+  font-weight:650;
+}
+.year-block summary::-webkit-details-marker{display:none;}
+.year-count{
+  font-weight:500;
+  color:var(--muted);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:2px 10px;
+  font-size:.85rem;
+}
+.year-body{padding:8px 6px 6px;}
+.pub{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+}
+.pub + .pub{margin-top:12px;}
+.pub-title{
+  font-weight:650;
+  margin-bottom:4px;
+}
+.pub-title-link{color:var(--text); text-decoration:none;}
+.pub-title-link:hover{text-decoration:underline;}
+.pub-authors{color:var(--muted); font-size:.95rem;}
+.pub-venue{margin-top:2px; font-size:.95rem;}
+.pub-links{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;}
+.chip{
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:transparent;
+  font-size:.85rem;
+  color:var(--text);
+  text-decoration:none;
+}
+.chip:hover{border-color:rgba(var(--accent-rgb), .45); text-decoration:none;}
+.chip-muted{
+  color:var(--muted);
+  border-style:dashed;
+}
+.footer{
+  color:var(--muted);
+  font-size:.92rem;
+  padding:26px 0 40px;
+  text-align:center;
+}
+@media print{
+  body{background:white;}
+  .topnav{display:none;}
+  .card{box-shadow:none;}
+  a{color:black; text-decoration:underline;}
+}
+
+</style>
 </head>
-
-<body data-q-sc-loaded="true">
-<div class="container">
-<br>
-<br>
-
-<div class="row">
-<div class="col-sm-4">
-<a href="./res/congbo_ma_photo.jpeg">
-<img class="img-responsive" style="max-height:300px;" src="./res/congbo_ma_photo.jpeg">
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<div class="profile">
+<a class="avatar" href="./res/congbo_ma_photo.jpeg">
+<img alt="Portrait of Congbo Ma" loading="lazy" src="./res/congbo_ma_photo.jpeg"/>
 </a>
-</div>
-
-<div class="col-sm-6">
-<div class="clearfix visible-xs-block"></div>
+<div class="profile-text">
 <h1>Congbo Ma</h1>
-
-
-
-
-<p style="font-size: 18px">Postdoctoral Research Fellow<br>
-<a href="https://www.mq.edu.au/faculty-of-science-and-engineering/departments-and-schools/school-of-computing">School of Computing</a> <br>
-<a href="https://www.mq.edu.au/">Macquarie University</a>
-<br>
-<br>
-
-<br>
-</p>
-<div class="col-xs-3">
-<a href="https://scholar.google.com/citations?user=yssGivYAAAAJ&hl=en" title="gscholar"><img src="./res/gscholar.png" style="max-height:30px;" class="img-responsive"></a>
+<div class="subtitle">
+            Postdoctoral Associate · New York University Abu Dhabi<br/>
+            Previously: Macquarie University · University of Adelaide
+          </div>
+<div class="link-row">
+<a aria-label="Google Scholar" href="https://scholar.google.com/citations?user=yssGivYAAAAJ&amp;hl=en">
+<img alt="" src="./res/gscholar.png"/>
+    Google Scholar
+  </a>
 </div>
-<p></p>
-</div>
-<div class="col-sm-2">
-<br><br><br>
+<div class="tag-row">
+<span class="tag">NLP</span><span class="tag">Data Mining</span><span class="tag">Medical ML</span><span class="tag">Multimodal Learning</span>
 </div>
 </div>
-<br>
-
-
-
-<p>
-
-I am a postdoctoral research fellow at Macquarie University, working with <a href="https://web.science.mq.edu.au/~jiawu/#SECTeam">Associate Professor Jia Wu</a>. During my doctoral studies, I worked under the supervision of <a href="http://weiemmazhang.me/">Dr. Wei (Emma) Zhang</a>, <a href="https://cs.adelaide.edu.au/~mingyu/"> Dr. Mingyu Guo</a> and <a href="https://researchers.adelaide.edu.au/profile/weitong.chen"> Dr. Weitong Chen </a> at the University of Adelaide. Prior to this, I gained research experience as a research assistant while working under the supervision of <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=JoLjflYAAAAJ&pagesize=100"> Professor Steven Hoi</a> at the Singapore Management University. My research interests lie in natural language processing, data mining, medical machine learning, and multi-modal learning, etc.
-</p>
-
-
-<h3 id="News">News </h3>
-<li>March 2024: One multi-document summarization paper has been accepted by WCCI-IJCNN 2024.</li>
-<li>Feb 2024: One social event detection paper has been accepted by WWW 2024.</li>
-<li>Feb 2024: I will be a tutor and guest lecturer for advance natural language course at Macquarie University.
-
-
-
-
-<h3 id="publication">Publications </h3>
-
-
-<p>
-<div class="paper" id="WCCI2024"><class="paper" title="Disentangling Specificity for Abstractive Multi-Document Summarization." />
-<div> <strong>Disentangling Specificity for Abstractive Multi-Document Summarization.</strong><br /> <strong>C Ma</strong>, WE Zhang, H Wang, H ZHuang, M Guo  <br />
-Accepted by WCCI-IJCNN 2024 <br />
-<a>To be appear</a>
 </div>
-<div class="spanner"></div>
+<nav aria-label="Section navigation" class="topnav">
+<a href="#about">About</a>
+<a href="#news">News</a>
+<a href="#publications">Publications</a>
+<a href="#awards">Awards</a>
+<a href="#service">Service</a>
+<a href="#activities">Activities</a>
+</nav>
 </div>
-</p>
-
-
-
-<p>
-<div class="paper" id="WWW2024"><class="paper" title="An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space." />
-<div> <strong>An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space.</strong><br /> Z Qiu, <strong>C Ma</strong>, J Wu, J Yang <br />
-Accepted by WWW 2024 <br />
-<a>To be appear</a>
+</header>
+<main class="wrap" id="main">
+<section class="card" id="about">
+<h2>About</h2>
+<p>I am currently a post-doctoral associate at New York University Abu Dhabi, working with <a href="https://nyuad.nyu.edu/en/academics/divisions/engineering/faculty/farah-emad-shamout.html">Dr. Farah Emad Shamout</a>. Before that, I was a postdoctoral research fellow at Macquarie University, where I worked with <a href="https://researchers.mq.edu.au/en/persons/jia-wu/">Prof. Jia Wu</a> and <a href="https://researchers.mq.edu.au/en/persons/jian-yang/">Prof. Jian Yang</a>. During this period, I was also a visiting researcher at MBZUAI, working with <a href="https://mbzuai.ac.ae/study/faculty/preslav-nakov/">Prof. Preslav Nakov</a>.</p>
+<p>I received my PhD from the University of Adelaide, where I worked under the supervision of <a href="https://weiezhang.github.io/">Prof. Wei (Emma) Zhang</a>, <a href="https://cs.adelaide.edu.au/~mingyu/">Dr. Mingyu Guo</a>, and <a href="https://researchers.adelaide.edu.au/profile/weitong.chen">Dr. Weitong Chen</a>. Prior to my doctoral studies, I gained research experience as a research assistant under the supervision of <a href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=JoLjflYAAAAJ&amp;pagesize=100">Prof. Steven Hoi</a> at Singapore Management University.</p>
+<p>My research interests include natural language processing, data mining, medical machine learning, and multimodal learning.</p>
+</section>
+<section class="card" id="news">
+<h2>News</h2>
+<ul class="list"><li class="timeline-item"><span class="date-badge">Jan 2026</span><div class="timeline-text">One paper on Arabic medical NLP has been accepted to an EACL 2026 workshop (HeaLing).</div></li>
+<li class="timeline-item"><span class="date-badge">Jan 2026</span><div class="timeline-text">Secured research funding from the NYUAD Access and Innovation Award (AY 2025–2026) as Principal Investigator.</div></li>
+<li class="timeline-item"><span class="date-badge">Jan 2026</span><div class="timeline-text">Two papers on social event detection have been accepted by WWW 2026.</div></li>
+<li class="timeline-item"><span class="date-badge">Aug 2025</span><div class="timeline-text">One multi-document summarization paper has been accepted by ADMA 2025.</div></li>
+<li class="timeline-item"><span class="date-badge">May 2025</span><div class="timeline-text">Three papers have been accepted by ACL 2025.</div></li></ul>
+</section>
+<section class="card" id="publications">
+<h2>Publications</h2>
+<p style="color:var(--muted); margin-top:-2px; margin-bottom:14px;">
+        Grouped by year. Click a year to expand/collapse.
+      </p>
+<details class="year-block" open="">
+<summary><span>2026</span><span class="year-count">3</span></summary>
+<div class="year-body">
+<article class="pub" id="EACL2026">
+<div class="pub-body">
+<div class="pub-title">Cross-lingual Empirical Evaluation of Large Language Models for Arabic Medical Tasks.</div>
+<div class="pub-authors">C Abouzahir, <strong>C Ma</strong>, FE Shamout, N Habash</div>
+<div class="pub-venue">Accepted by EACL 2026 Workshop on Linguistic Analysis for Health</div>
+<div class="pub-links"><span class="chip chip-muted">To appear</span></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="WWW2026a">
+<div class="pub-body">
+<div class="pub-title">Give a Hint: LLM-Enhanced Incremental Social Event Detection.</div>
+<div class="pub-authors">Z Qiu, <strong>C Ma</strong>, J Wu, J Yang</div>
+<div class="pub-venue">Accepted by WWW 2026</div>
+<div class="pub-links"><span class="chip chip-muted">To appear</span></div>
 </div>
-</p>
-
-
-
-
-
-<p>
-<div class="paper" id="MICCAI2023"><class="paper" title="Learnable cross-modal knowledge distillation for multi-modal learning with missing modality." />
-<div> <strong>Learnable cross-modal knowledge distillation for multi-modal learning with missing modality.</strong><br /> H Wang, <strong>C Ma</strong>, J Zhang, Y Zhang, J Avery, L Hull, G Carneiro <br />
-International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI 2023) <br />
-<a href='https://arxiv.org/pdf/2310.01035.pdf'>[PDF]</a>
+</article>
+<article class="pub" id="WWW2026b">
+<div class="pub-body">
+<div class="pub-title">PiGCN: Physics-Inspired Graph Convolution Networks for Heterogeneous Social Event Detection.</div>
+<div class="pub-authors">Y Yu, <strong>C Ma</strong>, J Wu, J Yang, Z Qiu</div>
+<div class="pub-venue">Accepted by WWW 2026</div>
+<div class="pub-links"><span class="chip chip-muted">To appear</span></div>
 </div>
-<div class="spanner"></div>
+</article>
 </div>
-</p>
-
-
-
-<div class="paper" id="IEEETransCSS"><class="paper" title="Learnable cross-modal knowledge distillation for multi-modal learning with missing modality." />
-<div> <strong>Data hiding with deep learning: a survey unifying digital watermarking and steganography.</strong><br /> Z Wang, O Byrnes, H Wang, R Sun, <strong>C Ma</strong>, H Chen, Q Wu, M Xue <br />
-IEEE Transactions on Computational Social Systems <br />
-<a href='https://ieeexplore.ieee.org/abstract/document/10123415'>[PDF]</a>
+</details>
+<details class="year-block" open="">
+<summary><span>2025</span><span class="year-count">7</span></summary>
+<div class="year-body">
+<article class="pub" id="ADMA2025">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/pdf/2407.11948.pdf">Rethinking Transformer-based Multi-document Summarization: An Empirical Investigation.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, WE Zhang, D Pitawela, H Zhuang, Y Shu, Q Li, H Wang</div>
+<div class="pub-venue">The 21st International Conference on Advanced Data Mining and Applications (ADMA 2025, oral), Kyoto, Japan, 2025</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/pdf/2407.11948.pdf">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="ACL2025-HD-NDEs">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2025.acl-long.309.pdf">HD-NDEs: Neural Differential Equations for Hallucination Detection in LLMs.</a></div>
+<div class="pub-authors">Q Li, J Geng, Z Chen, D Zhu, Y Wang, <strong>C Ma</strong>, C Lyu, F Karray</div>
+<div class="pub-venue">The 63rd Annual Meeting of the Association for Computational Linguistics (ACL Main 2025, Long Papers), Vienna, Austria, 2025</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2025.acl-long.309.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-
-
-
-<p>
-<div class="paper" id="cvpr2022"><class="paper" title="Multi-modal Learning with Missing Modality via Shared-Specific Feature Modeling." />
-<div> <strong>Multi-modal Learning with Missing Modality via Shared-Specific Feature Modeling.</strong><br /> H Wang, Y Chen, <strong>C Ma</strong>, J Avery, L Hull, G Carneiro <br />
-IEEE Conference on Computer Vision and Pattern Recognition 2023 (CVPR 2023) <br />
-<a href='https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_Multi-Modal_Learning_With_Missing_Modality_via_Shared-Specific_Feature_Modelling_CVPR_2023_paper.pdf'>[PDF]</a>
+</article>
+<article class="pub" id="ACL2025-Augmentation">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2025.acl-long.412.pdf">Explicit and Implicit Data Augmentation for Social Event Detection.</a></div>
+<div class="pub-authors">C Ma, Y Wang, J Wu, J Yang, J Du, Z Qiu, Q Li, H Wang, P Nakov</div>
+<div class="pub-venue">The 63rd Annual Meeting of the Association for Computational Linguistics (ACL Main 2025, Long Papers), Vienna, Austria, 2025</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2025.acl-long.412.pdf">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="ACL2025-TextIsAllYouNeed">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2025.acl-long.233.pdf">Text is All You Need: LLM-enhanced Incremental Social Event Detection.</a></div>
+<div class="pub-authors">Z Qiu, <strong>C Ma</strong>, J Wu, J Yang</div>
+<div class="pub-venue">The 63rd Annual Meeting of the Association for Computational Linguistics (ACL Main 2025, Long Papers), Vienna, Austria, 2025</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2025.acl-long.233.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-
-
-
-<p>
-<div class="paper" id="aacl-ijcnlp2022"><class="paper" title="An Empirical Study on Topic
-Preservation in Multi-Document Summarization." />
-<div> <strong>An Empirical Study on Topic
-Preservation in Multi-Document Summarization.</strong><br />
-M Sim, WE Zhang, <strong>C Ma</strong> <br />
-Asia-Pacific Chapter of the Association for Computational Linguistics and International Joint Conference on Natural Language Processing (AACL-IJCNLP SRW 2022) <br />
-<a href='https://aclanthology.org/2022.aacl-srw.9.pdf'>[PDF]</a>
+</article>
+<article class="pub" id="WWW2025-DWMM">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://dl.acm.org/doi/pdf/10.1145/3701716.3715480">Enhanced Social Event Detection through Dynamically Weighted Meta-Paths Modeling.</a></div>
+<div class="pub-authors">C Ma, Z Qiu, H Wang, J Du, S Xue, J Wu, J Yang</div>
+<div class="pub-venue">Proceedings of The Web Conference 2025 (WWW’25), Sydney, Australia, 2025</div>
+<div class="pub-links"><a class="chip" href="https://dl.acm.org/doi/pdf/10.1145/3701716.3715480">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="CHIL2025-UQML">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/pdf/2505.02874.pdf">Uncertainty Quantification for Machine Learning in Healthcare: A Survey.</a></div>
+<div class="pub-authors">L J L Lopez, S Elsharief, D A Jorf, F Darwish, C Ma, F E Shamout</div>
+<div class="pub-venue">Conference on Health, Inference, and Learning (CHIL 2025), Berkeley, CA, 2025</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/pdf/2505.02874.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-
-
-<p>
-<div class="paper" id="emnlp2022"><class="paper" title="Learning From the Source Document: Unsupervised Abstractive Summarization." />
-<div> <strong>Learning From the Source Document: Unsupervised Abstractive Summarization.</strong><br />
-H Zhuang, WE Zhang, J Yang, <strong>C Ma</strong>, Y Qu and QZ Sheng. <br />
-2022 Conference on Empirical Methods in Natural Language
-Processing (EMNLP 2022 Findings) <br />
-<a href='https://aclanthology.org/2022.findings-emnlp.309/'>[PDF]</a>
+</article>
+<article class="pub" id="BMVC2025-InModelMerging">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_1015/paper.pdf">In-Model Merging for Enhancing the Robustness of Medical Imaging Classification Models.</a></div>
+<div class="pub-authors">H Wang, I Almakky, <strong>C Ma</strong>, N Saeed, M Yaqub</div>
+<div class="pub-venue">Proceedings of the 36th British Machine Vision Conference (BMVC’25), Sheffield, UK, 2025</div>
+<div class="pub-links"><a class="chip" href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_1015/paper.pdf">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
 </div>
-</p>
-
-
-
-
-
-
-<p>
-<div class="paper" id="paclic2022"><class="paper" title="Incorporating Linguistic Knowledge for Abstractive 
-Multi-document Summarization." />
-<div> <strong>Incorporating Linguistic Knowledge for Abstractive Multi-document Summarization.</strong><br />
-<strong>C Ma</strong>, WE Zhang, H Wang, S Gupta ,M Guo <br />
-Pacific Asia Conference on Language Information and Computation 2022 (PACLIC 2022) <br />
-<a href='https://aclanthology.org/2022.paclic-1.17.pdf'>[PDF]</a>
+</details>
+<details class="year-block" open="">
+<summary><span>2024</span><span class="year-count">4</span></summary>
+<div class="year-body">
+<article class="pub" id="WCCI2024">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/pdf/2406.00005?">Disentangling Specificity for Abstractive Multi-Document Summarization.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, WE Zhang, H Wang, H ZHuang, M Guo</div>
+<div class="pub-venue">Accepted by WCCI-IJCNN 2024</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/pdf/2406.00005?">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="WWW2024">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://dl.acm.org/doi/pdf/10.1145/3589334.3645526">An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space.</a></div>
+<div class="pub-authors">Z Qiu, <strong>C Ma</strong>, J Wu, J Yang</div>
+<div class="pub-venue">Accepted by WWW 2024</div>
+<div class="pub-links"><a class="chip" href="https://dl.acm.org/doi/pdf/10.1145/3589334.3645526">PDF</a></div>
 </div>
-</p>
-
-
-
-<p>
-<div class="paper" id="wcci2022"><class="paper" title="Combining Document-aware Encoding and Linguistic-guided
-Encoding for Abstractive Multi-document Summarization." />
-<div> <strong>Combining Document-aware Encoding and Linguistic-guided Encoding for Abstractive 
-Multi-document Summarization.</strong><br />
-<strong>C Ma</strong>, WE Zhang, PD Pitawela, Y Qu, H Zhuang, H Wang <br />
-IEEE World Congress on Computational Intelligence 2022 (WCCI 2022) <br />
-<a href='https://arxiv.org/abs/2209.05929'>[PDF]</a>
+</article>
+<article class="pub" id="PhysMedBio2024-HAICOMM">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/pdf/2409.02046.pdf">Human–AI Collaborative Multi-modal Multi-rater Learning for Endometriosis Diagnosis.</a></div>
+<div class="pub-authors">H Wang, D Butler, Y Zhang, J Avery, S Knox, <strong>C Ma</strong>, L Hull, G Carneiro</div>
+<div class="pub-venue">Physics in Medicine &amp; Biology, vol. 70, Dec. 2024, p. 015008</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/pdf/2409.02046.pdf">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="ADMA2024-ChemKG">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://link.springer.com/chapter/10.1007/978-981-96-0814-0_21">Enhancing Chemistry-Domain Scientific Paper Summarization by Knowledge Graphs.</a></div>
+<div class="pub-authors">Y Qu, J Yang, W Chen, Y Jiao, L Yang, <strong>C Ma</strong></div>
+<div class="pub-venue">Proceedings of the 20th International Conference on Advanced Data Mining and Applications (ADMA’24), Sydney, Australia, 2024</div>
+<div class="pub-links"><a class="chip" href="https://link.springer.com/chapter/10.1007/978-981-96-0814-0_21">PDF</a></div>
 </div>
-</p>
-
-
-
-
-<p>
-<div class="paper" id="mdsumm"><class="paper" title="Multi-document Summarization via Deep Learning Techniques: A Survey" />
-<div> <strong>Multi-document Summarization via Deep Learning Techniques: A Survey.</strong><br />
-<strong>C Ma</strong>, WE Zhang, M Guo, H Wang, QZ Sheng <br />
-ACM Computing Survey (2022) <br />
-<a href='https://arxiv.org/abs/2011.04843'>[PDF]</a>
+</article>
 </div>
-<div class="spanner"></div>
+</details>
+<details class="year-block">
+<summary><span>2023</span><span class="year-count">3</span></summary>
+<div class="year-body">
+<article class="pub" id="MICCAI2023">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/pdf/2310.01035.pdf">Learnable cross-modal knowledge distillation for multi-modal learning with missing modality.</a></div>
+<div class="pub-authors">H Wang, <strong>C Ma</strong>, J Zhang, Y Zhang, J Avery, L Hull, G Carneiro</div>
+<div class="pub-venue">International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI 2023)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/pdf/2310.01035.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-<p>
-<div class="paper" id="crnp"><class="paper"  title="Uncertainty-aware Multi-modal Learning via Cross-modal Random Network Prediction" />
-<div> <strong>Uncertainty-aware Multi-modal Learning via Cross-modal Random Network Prediction.</strong><br />
-H Wang, J Zhang, Y Chen, <strong>C Ma</strong>, J Avery, L Hull, G Carneiro <br />
-European Conference on Computer Vision 2022 (ECCV 2022) <br />
-<a href='https://arxiv.org/abs/2207.10851'>[PDF]</a>
+</article>
+<article class="pub" id="TCSS2023-DataHiding">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://ieeexplore.ieee.org/abstract/document/10123415">Data Hiding with Deep Learning: A Survey Unifying Digital Watermarking and Steganography.</a></div>
+<div class="pub-authors">Z Wang, O Byrnes, H Wang, R Sun, <strong>C Ma</strong>, H Chen, Q Wu, M Xue</div>
+<div class="pub-venue">IEEE Transactions on Computational Social Systems, vol. 10, May 2023, pp. 2985–2999</div>
+<div class="pub-links"><a class="chip" href="https://ieeexplore.ieee.org/abstract/document/10123415">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="cvpr2022">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_Multi-Modal_Learning_With_Missing_Modality_via_Shared-Specific_Feature_Modelling_CVPR_2023_paper.pdf">Multi-modal Learning with Missing Modality via Shared-Specific Feature Modeling.</a></div>
+<div class="pub-authors">H Wang, Y Chen, <strong>C Ma</strong>, J Avery, L Hull, G Carneiro</div>
+<div class="pub-venue">IEEE Conference on Computer Vision and Pattern Recognition 2023 (CVPR 2023)</div>
+<div class="pub-links"><a class="chip" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_Multi-Modal_Learning_With_Missing_Modality_via_Shared-Specific_Feature_Modelling_CVPR_2023_paper.pdf">PDF</a></div>
 </div>
-</p>
-
-
-<p>
-<div class="paper" id="sigir"><class="paper"  title="Improving Deep Learning based Multi-document Summarization through Linguistic Knowledge." />
-<div> <strong>Improving Deep Learning based Multi-document Summarization through
-Linguistic Knowledge. </strong><br />
- <strong>C Ma</strong> <br />
-International ACM SIGIR Conference on Research and Development in Information Retrieval, Doctoral
-Consortium Paper (SIGIR’21) <br />
-<a href='https://dl.acm.org/doi/abs/10.1145/3404835.3463268'>[PDF]</a>
+</article>
 </div>
-<div class="spanner"></div>
+</details>
+<details class="year-block">
+<summary><span>2022</span><span class="year-count">6</span></summary>
+<div class="year-body">
+<article class="pub" id="aacl-ijcnlp2022">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2022.aacl-srw.9.pdf">An Empirical Study on Topic
+Preservation in Multi-Document Summarization.</a></div>
+<div class="pub-authors">M Sim, WE Zhang, <strong>C Ma</strong></div>
+<div class="pub-venue">Asia-Pacific Chapter of the Association for Computational Linguistics and International Joint Conference on Natural Language Processing (AACL-IJCNLP SRW 2022)</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2022.aacl-srw.9.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-
-
-
-<p>
-<div class="paper" id="traffic"><class="paper" title="Multi-intersection Traffic Optimisation: A Benchmark Dataset and a Strong Baseline" />
-<div> <strong>Multi-intersection Traffic Optimisation: A Benchmark Dataset and a Strong Baseline. </strong><br />
-H Wang, H Chen, Q Wu, <strong>C Ma</strong>, Y Li, C Shen <br />
-IEEE Open Journal of Intelligent Transportation System (2021) <br />
-<a href='https://arxiv.org/abs/2101.09640'>[PDF]</a>
-<a href='https://github.com/billhhh/Traffic_Optimisation'>[Code]</a>
+</article>
+<article class="pub" id="emnlp2022">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2022.findings-emnlp.309/">Learning From the Source Document: Unsupervised Abstractive Summarization.</a></div>
+<div class="pub-authors">H Zhuang, WE Zhang, J Yang, <strong>C Ma</strong>, Y Qu and QZ Sheng.</div>
+<div class="pub-venue">2022 Conference on Empirical Methods in Natural Language Processing (EMNLP 2022 Findings)</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2022.findings-emnlp.309/">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="paclic2022">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://aclanthology.org/2022.paclic-1.17.pdf">Incorporating Linguistic Knowledge for Abstractive Multi-document Summarization.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, WE Zhang, H Wang, S Gupta ,M Guo</div>
+<div class="pub-venue">Pacific Asia Conference on Language Information and Computation 2022 (PACLIC 2022)</div>
+<div class="pub-links"><a class="chip" href="https://aclanthology.org/2022.paclic-1.17.pdf">PDF</a></div>
 </div>
-</p>
-
-
-
-
-<p>
-<div class="paper" id="iot"><class="paper" title="The 10 research topics in the Internet of Things" />
-<div> <strong>The 10 research topics in the Internet of Things.</strong><br />
-WE Zhang, QZ Sheng, A Mahmood, M Zaib, SAHamad, A Aljubairy, AAF Alhazmi, S Sagar, <strong>C Ma</strong><br />
-IEEE 6th International Conference on Collaboration and Internet Computing 2020 (CIC 2020) <br />
-<a href='https://arxiv.org/abs/2012.01594'>[PDF]</a>
+</article>
+<article class="pub" id="wcci2022">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2209.05929">Combining Document-aware Encoding and Linguistic-guided Encoding for Abstractive 
+Multi-document Summarization.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, WE Zhang, PD Pitawela, Y Qu, H Zhuang, H Wang</div>
+<div class="pub-venue">IEEE World Congress on Computational Intelligence 2022 (WCCI 2022)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2209.05929">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="mdsumm">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2011.04843">Multi-document Summarization via Deep Learning Techniques: A Survey.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, WE Zhang, M Guo, H Wang, QZ Sheng</div>
+<div class="pub-venue">ACM Computing Survey (2022)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2011.04843">PDF</a></div>
 </div>
-</p>
-
-
-
-<p>
-<div class="paper" id="rdp"><class="paper"  title="Unsupervised Representation Learning by Predicting Random Distances" />
-<div> <strong>Unsupervised Representation Learning by Predicting Random Distances.</strong><br />
-H Wang, G Pang, C Shen, <strong>C Ma</strong> <br />
-International Joint Conference on Artificial Intelligence 2020 (IJCAI 2020) <br />
-<a href='https://arxiv.org/abs/1912.12186'>[PDF]</a>
-<a href='https://github.com/billhhh/RDP'>[Code]</a>
+</article>
+<article class="pub" id="crnp">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2207.10851">Uncertainty-aware Multi-modal Learning via Cross-modal Random Network Prediction.</a></div>
+<div class="pub-authors">H Wang, J Zhang, Y Chen, <strong>C Ma</strong>, J Avery, L Hull, G Carneiro</div>
+<div class="pub-venue">European Conference on Computer Vision 2022 (ECCV 2022)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2207.10851">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
 </div>
-</p>
-
-
-
-
-
-
-<p>
-<div class="paper" id="can"><class="paper" title="Multi-label thoracic disease image classification with cross-attention networks" />
-<div> <strong>Multi-label thoracic disease image classification with cross-attention networks.</strong><br />
-<strong>C Ma</strong>, H Wang, SCH Hoi <br />
-Medical Image Computing and Computer Assisted Interventions 2019 (MICCAI 2019) <br />
-<a href='https://arxiv.org/abs/2007.10859'>[PDF]</a>
+</details>
+<details class="year-block">
+<summary><span>2021</span><span class="year-count">2</span></summary>
+<div class="year-body">
+<article class="pub" id="sigir">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://dl.acm.org/doi/abs/10.1145/3404835.3463268">Improving Deep Learning based Multi-document Summarization through
+Linguistic Knowledge.</a></div>
+<div class="pub-authors"><strong>C Ma</strong></div>
+<div class="pub-venue">International ACM SIGIR Conference on Research and Development in Information Retrieval, Doctoral Consortium Paper (SIGIR’21)</div>
+<div class="pub-links"><a class="chip" href="https://dl.acm.org/doi/abs/10.1145/3404835.3463268">PDF</a></div>
 </div>
-<div class="spanner"></div>
+</article>
+<article class="pub" id="traffic">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2101.09640">Multi-intersection Traffic Optimisation: A Benchmark Dataset and a Strong Baseline.</a></div>
+<div class="pub-authors">H Wang, H Chen, Q Wu, <strong>C Ma</strong>, Y Li, C Shen</div>
+<div class="pub-venue">IEEE Open Journal of Intelligent Transportation System (2021)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2101.09640">PDF</a> <a class="chip" href="https://github.com/billhhh/Traffic_Optimisation">Code</a></div>
 </div>
-</p>
-
-
-<p>
-<div class="paper" id="rocp"><class="paper" title="Randomized online CP decomposition" />
-<div> <strong>Randomized online CP decomposition.</strong><br />
-<strong>C Ma</strong>, X Yang, H Wang <br />
-International Conference on Advanced Computational Intelligence 2018 (ICACI 2018) <br />
-<a href='https://arxiv.org/abs/2007.10798'>[PDF]</a>
+</article>
 </div>
-<div class="spanner"></div>
+</details>
+<details class="year-block">
+<summary><span>2020</span><span class="year-count">2</span></summary>
+<div class="year-body">
+<article class="pub" id="iot">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2012.01594">The 10 research topics in the Internet of Things.</a></div>
+<div class="pub-authors">WE Zhang, QZ Sheng, A Mahmood, M Zaib, SAHamad, A Aljubairy, AAF Alhazmi, S Sagar, <strong>C Ma</strong></div>
+<div class="pub-venue">IEEE 6th International Conference on Collaboration and Internet Computing 2020 (CIC 2020)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2012.01594">PDF</a></div>
 </div>
-</p>
-
-
-
-<p>
-<div class="paper" id="matting"><class="paper" title="A Fast Image Matting Method based
-on Interval-line Sampling" />
-<div> <strong>A Fast Image Matting Method based on Interval-line Sampling.</strong><br />
-H Wang, Z Yang, <strong>C Ma</strong><br />
-IEEE International Conference on Computational Science and Engineering 2017 (ICSE 2017) <br />
-<a href='https://ieeexplore.ieee.org/document/8005936'>[PDF]</a>
+</article>
+<article class="pub" id="rdp">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/1912.12186">Unsupervised Representation Learning by Predicting Random Distances.</a></div>
+<div class="pub-authors">H Wang, G Pang, C Shen, <strong>C Ma</strong></div>
+<div class="pub-venue">International Joint Conference on Artificial Intelligence 2020 (IJCAI 2020)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/1912.12186">PDF</a> <a class="chip" href="https://github.com/billhhh/RDP">Code</a></div>
 </div>
-<div class="spanner"></div>
+</article>
 </div>
-</p>
-
-
-
-
-<h3 id="activities">Activities / Experience</h3>
-
-<li>Advanced Natural Language Processing (2024), Macquarie University, Guest Lecturer, Tutor</li>
+</details>
+<details class="year-block">
+<summary><span>2019</span><span class="year-count">1</span></summary>
+<div class="year-body">
+<article class="pub" id="can">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2007.10859">Multi-label thoracic disease image classification with cross-attention networks.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, H Wang, SCH Hoi</div>
+<div class="pub-venue">Medical Image Computing and Computer Assisted Interventions 2019 (MICCAI 2019)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2007.10859">PDF</a></div>
+</div>
+</article>
+</div>
+</details>
+<details class="year-block">
+<summary><span>2018</span><span class="year-count">1</span></summary>
+<div class="year-body">
+<article class="pub" id="rocp">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://arxiv.org/abs/2007.10798">Randomized online CP decomposition.</a></div>
+<div class="pub-authors"><strong>C Ma</strong>, X Yang, H Wang</div>
+<div class="pub-venue">International Conference on Advanced Computational Intelligence 2018 (ICACI 2018)</div>
+<div class="pub-links"><a class="chip" href="https://arxiv.org/abs/2007.10798">PDF</a></div>
+</div>
+</article>
+</div>
+</details>
+<details class="year-block">
+<summary><span>2017</span><span class="year-count">1</span></summary>
+<div class="year-body">
+<article class="pub" id="matting">
+<div class="pub-body">
+<div class="pub-title"><a class="pub-title-link" href="https://ieeexplore.ieee.org/document/8005936">A Fast Image Matting Method based on Interval-line Sampling.</a></div>
+<div class="pub-authors">H Wang, Z Yang, <strong>C Ma</strong></div>
+<div class="pub-venue">IEEE International Conference on Computational Science and Engineering 2017 (ICSE 2017)</div>
+<div class="pub-links"><a class="chip" href="https://ieeexplore.ieee.org/document/8005936">PDF</a></div>
+</div>
+</article>
+</div>
+</details>
+</section>
+<section class="card" id="awards">
+<h2>Awards</h2>
+<ul class="list"><li class="timeline-item"><span class="date-badge">2025</span><div class="timeline-text">New York University Abu Dhabi Research Travel Grant</div></li>
+<li class="timeline-item"><span class="date-badge">2025</span><div class="timeline-text">Outstanding Volunteer in 2025 Chinese Bridge Language Proficiency Competition – UAE Regional Finals</div></li>
+<li class="timeline-item"><span class="date-badge">2024</span><div class="timeline-text">ADMA 2024 Outstanding Service</div></li>
+<li class="timeline-item"><span class="date-badge">2023</span><div class="timeline-text">Adelaide Graduate Research School Travel Grant</div></li>
+<li class="timeline-item"><span class="date-badge">2022</span><div class="timeline-text">WCCI 2022 Travel Grant</div></li>
+<li class="timeline-item"><span class="date-badge">2020</span><div class="timeline-text">School of Computer Science PhD Scholarship with Corresponding Full Fee Scholarship</div></li></ul>
+</section>
+<section class="card" id="service">
+<h2>Academic and Professional Service</h2>
+<ul class="bullets"><li>Tutorial Co-organizer, IEEE BioCAS 2025</li>
+<li>Communication Chair, Women in Engineering, New York University Abu Dhabi, 2025–2026</li>
+<li>Workshop Co-organizer, BioFM Workshop at ICDM 2025</li>
+<li>Area Chair, IJCNN 2025</li>
+<li>Proceedings Chair, ADMA 2024</li></ul>
+</section>
+<section class="card" id="activities">
+<h2>Activities / Experience</h2>
+<ul class="bullets"><li>Advanced Natural Language Processing (2024), Macquarie University, Guest Lecturer, Tutor</li>
 <li>Artificial Intelligence (2023), The University of Adelaide, Guest Lecturer, Tutor</li>
-<li> Concepts in Artificial Intelligence & Machine Learning (2022), The University of Adelaide, Tutor</li>
-<li> Artificial Intelligence (2022), The University of Adelaide, Tutor</li>
-<li> Distributed Databases and Data Mining (2021), The University of Adelaide, Tutor</li>
-<li> Applied Natural Language Processing (2020), The University of Adelaide, Tutor</li>
-<li> Discrete mathematics Class (2016), South China University of Technology, Tutor</li>
-
-
-
-<hr>
-
-<script src="./res/jquery.min.js"></script>
+<li>Concepts in Artificial Intelligence &amp; Machine Learning (2022), The University of Adelaide, Tutor</li>
+<li>Artificial Intelligence (2022), The University of Adelaide, Tutor</li>
+<li>Distributed Databases and Data Mining (2021), The University of Adelaide, Tutor</li>
+<li>Applied Natural Language Processing (2020), The University of Adelaide, Tutor</li>
+<li>Discrete mathematics Class (2016), South China University of Technology, Tutor</li></ul>
+</section></main>
+<footer class="footer">
+<div class="wrap">
+<div>© <span id="year"></span> Congbo Ma. All rights reserved.</div>
+<div style="margin-top:6px;">Last updated: <span id="lastUpdated"></span></div>
 </div>
-
-
-</body></html>
+</footer>
+<script>
+    // Open external links in a new tab
+    document.querySelectorAll('a[href^="http"]').forEach(a => {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString(undefined, {
+      year: 'numeric', month: 'short', day: '2-digit'
+    });
+    
+</script>
+</body>
+</html>
